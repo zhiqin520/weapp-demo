@@ -3,12 +3,12 @@
   // First is default to view
   // https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#pages
   "pages": [
-    "pages/splash/splash",
     "pages/board/board",
     "pages/list/list",
     "pages/item/item",
     "pages/search/search",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/one/one"
     // Dont remove this comment
   ],
   // Window configuration
@@ -53,6 +53,12 @@
         "pagePath": "pages/search/search",
         "iconPath": "images/search.png",
         "selectedIconPath": "images/search-actived.png"
+      },
+      {
+        "text": "ONE",
+        "pagePath": "pages/one/one",
+        "iconPath": "images/board.png",
+        "selectedIconPath": "images/board-actived.png"
       },
       {
         "text": "我的",
