@@ -18,6 +18,12 @@ const douban = require('./utils/douban.js')
  */
 const baidu = require('./utils/baidu.js')
 
+/**
+ * ONE API 模块
+ * @type {Object}
+ */
+const one = require('./utils/one.js')
+
 App({
   /**
    * Global shared
@@ -43,6 +49,12 @@ App({
    * Baidu API
    */
   baidu: baidu,
+
+
+  /**
+   * ONE API
+   */
+  one: one,
 
   /**
    * 生命周期函数--监听小程序初始化
