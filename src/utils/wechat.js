@@ -4,9 +4,9 @@ function login () {
   })
 }
 
-function getUserInfo () {
+function getUserInfo (lang) {
   return new Promise((resolve, reject) => {
-    wx.getUserInfo({ success: resolve, fail: reject })
+    wx.getUserInfo({ lang: lang, success: resolve, fail: reject })
   })
 }
 

@@ -6,8 +6,7 @@
   <view class="user" bindtap="getUserInfo">
     <image class="user-avatar" src="{{ userInfo.avatarUrl }}" mode="aspectFit"/>
     <text class="user-nickname">{{ userInfo.nickName }}</text>
-    <text hidden="{{ !userInfo.city }}">{{ userInfo.city }}, {{ userInfo.province }}</text>
-    <text hidden="{{ !userInfo.city }}"> Thanks~ </text>
+    <text hidden="{{ !userInfo.city }}">{{ userInfo.country }}, {{ userInfo.province }}, {{ userInfo.city }}</text>
   </view>
 </view>
 

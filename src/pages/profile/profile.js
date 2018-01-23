@@ -7,17 +7,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: 'About',
+    title: 'AboutMe',
     userInfo: {
       wechat: 'WEDN-NET',
-      nickName: '汪磊(iceStone)',
-      avatarUrl: '../../images/qrcode.png'
+      nickName: '李枝琴(lizhiqin)',
+      avatarUrl: '../../images/qrcode.png',
+      country: '',
+      province: '',
+      city: ''
     }
   },
 
   getUserInfo () {
     const that = this
-    app.wechat.getUserInfo()
+    app.wechat.getUserInfo('zh_CN')
       .then(res => that.setData({ userInfo: res.userInfo }))
   },
 

@@ -44,46 +44,18 @@ Page({
           return this.setData({ movies: cache.movies, loading: false })
         }
 
+        const ONE_DAY = 1 * 24 * 60 * 60 * 1000;
+
         app.douban.find('coming_soon', 1, 3)
           .then(d => {
             this.setData({ movies: d.subjects, loading: false })
             return app.wechat.setStorage('last_splash_data', {
               movies: d.subjects,
-              expires: Date.now() + 1 * 24 * 60 * 60 * 1000
+              expires: Date.now() + ONE_DAY
             })
           })
           .then(() => console.log('storage last splash data'))
       })
-
-    // app.wechat.getStorage('last_splash_data')
-    //   .then(res => {
-    //     if (res.data.expires < Date.now()) {
-    //       return console.log('storage expired')
-    //     }
-    //     return res.data.movies
-    //   })
-    //   .catch(e => {
-    //     console.log('get storage faild')
-    //     return app.douban.find('coming_soon', 1, 1).then(d => d.subjects)
-    //   })
-    //   .then(movies => {
-    //     if (movies) return movies
-    //     return app.douban.find('coming_soon', 1, 1).then(d => d.subjects)
-    //   })
-    //   .then(movies => {
-    //     this.setData({ movies, loading: false })
-    //     return app.wechat.setStorage('last_splash_data', {
-    //       movies: movies,
-    //       expires: Date.now() + 1 * 24 * 60 * 60 * 1000
-    //     })
-    //   })
-    //   .then(() => {
-    //     console.log('storage last splash data')
-    //   })
-    //   .catch(e => {
-    //     console.error(e)
-    //     this.setData({ loading: false })
-    //   })
   },
 
   /**
