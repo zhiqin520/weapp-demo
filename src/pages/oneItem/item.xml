@@ -1,0 +1,14 @@
+<view class="container">
+  <loading hidden="{{ !loading }}">加载中...</loading>
+  <image wx:if="{{ movie.image }}" class="background" src="{{ movie.image }}" mode="aspectFill"/>
+  <block wx:if="{{ movie.title }}">
+    <view class="meta">
+      <image class="poster" src="{{ movie.image }}" mode="aspectFit"/>
+      <text class="title">{{ movie.author }}</text>
+    </view>
+    <view class="summary">
+      <text class="label">摘要：</text>
+      <text class="content">{{ movie.summary }}</text>
+    </view>
+  </block>
+</view>

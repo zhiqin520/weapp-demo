@@ -7,27 +7,55 @@ Page({
      * 页面的初始数据
      */
     data: {
-        title: 'fetch movie from one',
-        swipers: [],
+        boards: [
+            {key: 'reading/index/', title: 'reading'},
+            {key: 'movie/list/0', title: 'movie'}
+        ],
+        loading: true
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-        // TODO: onLoad
-        return app.one.find()
-            .then(d => {
-                if (d.data) {
-                    let data = d.data.filter((item, index) => {
-                        return item.author_list.length > 0
-                    }).slice(0,5)
-                    console.log(data)
-                    this.setData({
-                        swipers: data
-                    })
-                }
-            })
+        const promises = this.data.boards.map(board => {
+            return app.one.find(board.key)
+                .then(res => {
+                    if (board.key === 'reading/index/') {
+                        let d = res.data.essay.filter((item, index) => {
+                            return item.author_list.length > 0
+                        }).slice(0, 5)
+                        console.log('reading', d)
+                        board.data = [];
+                        d.forEach((item, index) => {
+                            let obj = {
+                                id: item.content_id,
+                                title: item.hp_title,
+                                imgUrl: item.author_list[0].web_url
+                            }
+                            board.data.push(obj);
+                        })
+                        return board
+                    }
+                    if (board.key === 'movie/list/0') {
+                        let d = res.data.filter((item, index) => {
+                            return item.author_list.length > 0
+                        })
+                        console.log('movie', d)
+                        board.data = [];
+                        d.forEach((item, index) => {
+                            let obj = {
+                                id: item.id,
+                                title: item.title,
+                                imgUrl: item.author_list[0].web_url
+                            }
+                            board.data.push(obj);
+                        })
+                        return board
+                    }
+                })
+        })
+        Promise.all(promises).then(boards => this.setData({boards: boards, loading: false}))
     },
 
     /**

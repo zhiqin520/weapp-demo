@@ -1,10 +1,31 @@
-<!-- 可用组件：https://mp.weixin.qq.com/debug/wxadoc/dev/component/ -->
 <view class="container">
   <view class="slide">
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000">
-      <swiper-item wx:for="{{ swipers }}" wx:key="id">
-        <image src="{{ item.author_list[0].web_url }}" mode="aspectFill"/>
+      <swiper-item wx:for="{{ boards[0].data }}" wx:key="id">
+        <image src="{{ item.imgUrl }}" mode="aspectFill"/>
       </swiper-item>
     </swiper>
+  </view>
+  <view class="board" scroll-y="true">
+    <block wx:for="{{ boards }}" wx:for-index="idx" wx:key="key">
+      <view class="board-item">
+        <navigator url="#" hover-class="none">
+          <view class="title">
+            <text>{{ item.title }}</text>
+            <image src="../../images/arrowright.png" mode="aspectFill"/>
+          </view>
+        </navigator>
+        <scroll-view class="content" scroll-x="true">
+          <view class="inner">
+            <navigator wx:for="{{ item.data }}"  wx:for-index="jdx" wx:key="id" url="../oneItem/item?id={{ item.id }}&type={{ boards[idx].title }}">
+              <view class="movie-item">
+                <image src="{{ item.imgUrl }}" mode="aspectFill"/>
+                <text>{{ item.title }}</text>
+              </view>
+            </navigator>
+          </view>
+        </scroll-view>
+      </view>
+    </block>
   </view>
 </view>
