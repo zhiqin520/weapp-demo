@@ -48,11 +48,15 @@ Page({
 
         app.douban.find('coming_soon', 1, 3)
           .then(d => {
-            this.setData({ movies: d.subjects, loading: false })
-            return app.wechat.setStorage('last_splash_data', {
-              movies: d.subjects,
-              expires: Date.now() + ONE_DAY
-            })
+            if(d.subjects){
+                this.setData({ movies: d.subjects, loading: false })
+                return app.wechat.setStorage('last_splash_data', {
+                    movies: d.subjects,
+                    expires: Date.now() + ONE_DAY
+                })
+            }else {
+                this.handleStart()//若请求失败,则直接跳转榜单首页
+            }
           })
           .then(() => console.log('storage last splash data'))
       })

@@ -22,6 +22,7 @@ Page({
     const that = this
     app.wechat.getUserInfo('zh_CN')
       .then(res => that.setData({ userInfo: res.userInfo }))
+      .catch(err => console.error('getUserInfo fail', err))
   },
 
   /**
